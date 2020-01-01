@@ -13,37 +13,41 @@ var replace = require('gulp-replace');
 
 
 // File paths
-const files = { 
+const files = {
     scssPath: 'app/scss/**/*.scss',
-    jsPath: 'app/js/**/*.js'
+    jsPath: 'app/js/**/*.js',
 }
 
 // Sass task: compiles the style.scss file into style.css
-function scssTask(){    
+function scssTask() {
     return src(files.scssPath)
         .pipe(sourcemaps.init()) // initialize sourcemaps first
         .pipe(sass()) // compile SCSS to CSS
-        .pipe(postcss([ autoprefixer(), cssnano() ])) // PostCSS plugins
+        .pipe(postcss([autoprefixer(), cssnano()])) // PostCSS plugins
         .pipe(sourcemaps.write('.')) // write sourcemaps file in current directory
-        .pipe(dest('dist')
-    ); // put final CSS in dist folder
+        .pipe(dest('dist')); // put final CSS in dist folder
 }
 
 // JS task: concatenates and uglifies JS files to script.js
-function jsTask(){
+function jsTask() {
     return src([
-        files.jsPath
-        //,'!' + 'includes/js/jquery.min.js', // to exclude any specific files
+            'app/js/jquery-3.2.1.js',
+            'app/js/tether.min.js',
+            'app/js/bootstrap.js',
+            'app/js/theme.js',
+            'app/js/gdpr.js',
+
+            //,'!' + 'includes/js/jquery.min.js', // to exclude any specific files
         ])
         .pipe(concat('all.js'))
         .pipe(uglify())
-        .pipe(dest('dist')
-    );
+        .pipe(dest('dist'));
 }
 
 // Cachebust
 var cbString = new Date().getTime();
-function cacheBustTask(){
+
+function cacheBustTask() {
     return src(['index.html'])
         .pipe(replace(/cb=\d+/g, 'cb=' + cbString))
         .pipe(dest('.'));
@@ -51,20 +55,20 @@ function cacheBustTask(){
 
 // Watch task: watch SCSS and JS files for changes
 // If any change, run scss and js tasks simultaneously
-function watchTask(){
-    watch([files.scssPath, files.jsPath], 
+function watchTask() {
+    watch([files.scssPath, files.jsPath],
         series(
             parallel(scssTask, jsTask),
             cacheBustTask
         )
-    );    
+    );
 }
 
 // Export the default Gulp task so it can be run
 // Runs the scss and js tasks simultaneously
 // then runs cacheBust, then watch task
 exports.default = series(
-    parallel(scssTask, jsTask), 
+    parallel(scssTask, jsTask),
     cacheBustTask,
     watchTask
 );
