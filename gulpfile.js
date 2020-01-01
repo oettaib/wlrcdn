@@ -9,6 +9,8 @@ const uglify = require('gulp-uglify');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
+var strip = require('gulp-strip-comments');
+
 var replace = require('gulp-replace');
 
 
@@ -28,12 +30,22 @@ function scssTask() {
         .pipe(dest('dist')); // put final CSS in dist folder
 }
 
+function jsFilesTask() {
+    return src([
+            // 'app/js/jquery-3.2.1.js',
+            // 'app/js/tether.min.js',
+            // 'app/js/bootstrap.js', 'app/js/theme.js',
+            'app/js/gdpr.js',
+        ])
+        .pipe(strip())
+        .pipe(dest('dist/js'));
+}
 // JS task: concatenates and uglifies JS files to script.js
 function jsTask() {
     return src([
-            'app/js/jquery-3.2.1.js',
-            'app/js/tether.min.js',
-            'app/js/bootstrap.js',
+            // 'app/js/jquery-3.2.1.js',
+            // 'app/js/tether.min.js',
+            // 'app/js/bootstrap.js',
             'app/js/theme.js',
             'app/js/gdpr.js',
 
@@ -58,7 +70,7 @@ function cacheBustTask() {
 function watchTask() {
     watch([files.scssPath, files.jsPath],
         series(
-            parallel(scssTask, jsTask),
+            parallel(scssTask, jsTask, jsFilesTask),
             cacheBustTask
         )
     );
@@ -68,7 +80,7 @@ function watchTask() {
 // Runs the scss and js tasks simultaneously
 // then runs cacheBust, then watch task
 exports.default = series(
-    parallel(scssTask, jsTask),
+    parallel(scssTask, jsTask, jsFilesTask),
     cacheBustTask,
     watchTask
 );

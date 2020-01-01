@@ -283,52 +283,52 @@
             return obj != null && obj === obj.window;
         },
 
-        isNumeric: function(obj) {
+//         isNumeric: function(obj) {
 
-            // As of jQuery 3.0, isNumeric is limited to
-            // strings and numbers (primitives or objects)
-            // that can be coerced to finite numbers (gh-2662)
-            var type = jQuery.type(obj);
-            return (type === "number" || type === "string") &&
+//             // As of jQuery 3.0, isNumeric is limited to
+//             // strings and numbers (primitives or objects)
+//             // that can be coerced to finite numbers (gh-2662)
+//             var type = jQuery.type(obj);
+//             return (type === "number" || type === "string") &&
 
-                // parseFloat NaNs numeric-cast false positives ("")
-                // ...but misinterprets leading-number strings, particularly hex literals ("0x...")
-                // subtraction forces infinities to NaN
-                !isNaN(obj - parseFloat(obj));
-        },
+//                 // parseFloat NaNs numeric-cast false positives ("")
+//                 // ...but misinterprets leading-number strings, particularly hex literals ("0x...")
+//                 // subtraction forces infinities to NaN
+//                 !isNaN(obj - parseFloat(obj));
+//         },
 
-        isPlainObject: function(obj) {
-            var proto, Ctor;
+//         isPlainObject: function(obj) {
+//             var proto, Ctor;
 
-            // Detect obvious negatives
-            // Use toString instead of jQuery.type to catch host objects
-            if (!obj || toString.call(obj) !== "[object Object]") {
-                return false;
-            }
+//             // Detect obvious negatives
+//             // Use toString instead of jQuery.type to catch host objects
+//             if (!obj || toString.call(obj) !== "[object Object]") {
+//                 return false;
+//             }
 
-            proto = getProto(obj);
+//             proto = getProto(obj);
 
-            // Objects with no prototype (e.g., `Object.create( null )`) are plain
-            if (!proto) {
-                return true;
-            }
+//             // Objects with no prototype (e.g., `Object.create( null )`) are plain
+//             if (!proto) {
+//                 return true;
+//             }
 
-            // Objects with prototype are plain iff they were constructed by a global Object function
-            Ctor = hasOwn.call(proto, "constructor") && proto.constructor;
-            return typeof Ctor === "function" && fnToString.call(Ctor) === ObjectFunctionString;
-        },
+//             // Objects with prototype are plain iff they were constructed by a global Object function
+//             Ctor = hasOwn.call(proto, "constructor") && proto.constructor;
+//             return typeof Ctor === "function" && fnToString.call(Ctor) === ObjectFunctionString;
+//         },
 
-        isEmptyObject: function(obj) {
+//         isEmptyObject: function(obj) {
 
-            /* eslint-disable no-unused-vars */
-            // See https://github.com/eslint/eslint/issues/6125
-            var name;
+//             /* eslint-disable no-unused-vars */
+//             // See https://github.com/eslint/eslint/issues/6125
+//             var name;
 
-            for (name in obj) {
-                return false;
-            }
-            return true;
-        },
+//             for (name in obj) {
+//                 return false;
+//             }
+//             return true;
+//         },
 
         type: function(obj) {
             if (obj == null) {
@@ -342,9 +342,9 @@
         },
 
         // Evaluates a script in a global context
-        globalEval: function(code) {
-            DOMEval(code);
-        },
+//         globalEval: function(code) {
+//             DOMEval(code);
+//         },
 
         // Convert dashed to camelCase; used by the css and data modules
         // Support: IE <=9 - 11, Edge 12 - 13
@@ -375,11 +375,11 @@
         },
 
         // Support: Android <=4.0 only
-        trim: function(text) {
-            return text == null ?
-                "" :
-                (text + "").replace(rtrim, "");
-        },
+//         trim: function(text) {
+//             return text == null ?
+//                 "" :
+//                 (text + "").replace(rtrim, "");
+//         },
 
         // results is for internal usage only
         makeArray: function(arr, results) {
@@ -398,9 +398,9 @@
             return ret;
         },
 
-        inArray: function(elem, arr, i) {
-            return arr == null ? -1 : indexOf.call(arr, elem, i);
-        },
+//         inArray: function(elem, arr, i) {
+//             return arr == null ? -1 : indexOf.call(arr, elem, i);
+//         },
 
         // Support: Android <=4.0 only, PhantomJS 1 only
         // push.apply(_, arraylike) throws on ancient WebKit
@@ -418,88 +418,88 @@
             return first;
         },
 
-        grep: function(elems, callback, invert) {
-            var callbackInverse,
-                matches = [],
-                i = 0,
-                length = elems.length,
-                callbackExpect = !invert;
+//         grep: function(elems, callback, invert) {
+//             var callbackInverse,
+//                 matches = [],
+//                 i = 0,
+//                 length = elems.length,
+//                 callbackExpect = !invert;
 
-            // Go through the array, only saving the items
-            // that pass the validator function
-            for (; i < length; i++) {
-                callbackInverse = !callback(elems[i], i);
-                if (callbackInverse !== callbackExpect) {
-                    matches.push(elems[i]);
-                }
-            }
+//             // Go through the array, only saving the items
+//             // that pass the validator function
+//             for (; i < length; i++) {
+//                 callbackInverse = !callback(elems[i], i);
+//                 if (callbackInverse !== callbackExpect) {
+//                     matches.push(elems[i]);
+//                 }
+//             }
 
-            return matches;
-        },
+//             return matches;
+//         },
 
         // arg is for internal usage only
-        map: function(elems, callback, arg) {
-            var length, value,
-                i = 0,
-                ret = [];
+//         map: function(elems, callback, arg) {
+//             var length, value,
+//                 i = 0,
+//                 ret = [];
 
-            // Go through the array, translating each of the items to their new values
-            if (isArrayLike(elems)) {
-                length = elems.length;
-                for (; i < length; i++) {
-                    value = callback(elems[i], i, arg);
+//             // Go through the array, translating each of the items to their new values
+//             if (isArrayLike(elems)) {
+//                 length = elems.length;
+//                 for (; i < length; i++) {
+//                     value = callback(elems[i], i, arg);
 
-                    if (value != null) {
-                        ret.push(value);
-                    }
-                }
+//                     if (value != null) {
+//                         ret.push(value);
+//                     }
+//                 }
 
-                // Go through every key on the object,
-            } else {
-                for (i in elems) {
-                    value = callback(elems[i], i, arg);
+//                 // Go through every key on the object,
+//             } else {
+//                 for (i in elems) {
+//                     value = callback(elems[i], i, arg);
 
-                    if (value != null) {
-                        ret.push(value);
-                    }
-                }
-            }
+//                     if (value != null) {
+//                         ret.push(value);
+//                     }
+//                 }
+//             }
 
-            // Flatten any nested arrays
-            return concat.apply([], ret);
-        },
+//             // Flatten any nested arrays
+//             return concat.apply([], ret);
+//         },
 
         // A global GUID counter for objects
         guid: 1,
 
         // Bind a function to a context, optionally partially applying any
         // arguments.
-        proxy: function(fn, context) {
-            var tmp, args, proxy;
+//         proxy: function(fn, context) {
+//             var tmp, args, proxy;
 
-            if (typeof context === "string") {
-                tmp = fn[context];
-                context = fn;
-                fn = tmp;
-            }
+//             if (typeof context === "string") {
+//                 tmp = fn[context];
+//                 context = fn;
+//                 fn = tmp;
+//             }
 
-            // Quick check to determine if target is callable, in the spec
-            // this throws a TypeError, but we will just return undefined.
-            if (!jQuery.isFunction(fn)) {
-                return undefined;
-            }
+//             // Quick check to determine if target is callable, in the spec
+//             // this throws a TypeError, but we will just return undefined.
+//             if (!jQuery.isFunction(fn)) {
+//                 return undefined;
+//             }
 
-            // Simulated bind
-            args = slice.call(arguments, 2);
-            proxy = function() {
-                return fn.apply(context || this, args.concat(slice.call(arguments)));
-            };
+//             // Simulated bind
+//             args = slice.call(arguments, 2);
+//             proxy = function() {
+//                 return fn.apply(context || this, args.concat(slice.call(arguments)));
+//             };
 
-            // Set the guid of unique handler to the same of original handler, so it can be removed
-            proxy.guid = fn.guid = fn.guid || jQuery.guid++;
+//             // Set the guid of unique handler to the same of original handler, so it can be removed
+//             proxy.guid = fn.guid = fn.guid || jQuery.guid++;
 
-            return proxy;
-        },
+//             return proxy;
+//         },
 
         now: Date.now,
 
@@ -593,16 +593,16 @@
                 slice = arr.slice,
                 // Use a stripped-down indexOf as it's faster than native
                 // https://jsperf.com/thor-indexof-vs-for/5
-                indexOf = function(list, elem) {
-                    var i = 0,
-                        len = list.length;
-                    for (; i < len; i++) {
-                        if (list[i] === elem) {
-                            return i;
-                        }
-                    }
-                    return -1;
-                },
+//                 indexOf = function(list, elem) {
+//                     var i = 0,
+//                         len = list.length;
+//                     for (; i < len; i++) {
+//                         if (list[i] === elem) {
+//                             return i;
+//                         }
+//                     }
+//                     return -1;
+//                 },
 
                 booleans = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
 
@@ -673,46 +673,46 @@
                 // CSS escapes
                 // http://www.w3.org/TR/CSS21/syndata.html#escaped-characters
                 runescape = new RegExp("\\\\([\\da-f]{1,6}" + whitespace + "?|(" + whitespace + ")|.)", "ig"),
-                funescape = function(_, escaped, escapedWhitespace) {
-                    var high = "0x" + escaped - 0x10000;
-                    // NaN means non-codepoint
-                    // Support: Firefox<24
-                    // Workaround erroneous numeric interpretation of +"0x"
-                    return high !== high || escapedWhitespace ?
-                        escaped :
-                        high < 0 ?
-                        // BMP codepoint
-                        String.fromCharCode(high + 0x10000) :
-                        // Supplemental Plane codepoint (surrogate pair)
-                        String.fromCharCode(high >> 10 | 0xD800, high & 0x3FF | 0xDC00);
-                },
+//                 funescape = function(_, escaped, escapedWhitespace) {
+//                     var high = "0x" + escaped - 0x10000;
+//                     // NaN means non-codepoint
+//                     // Support: Firefox<24
+//                     // Workaround erroneous numeric interpretation of +"0x"
+//                     return high !== high || escapedWhitespace ?
+//                         escaped :
+//                         high < 0 ?
+//                         // BMP codepoint
+//                         String.fromCharCode(high + 0x10000) :
+//                         // Supplemental Plane codepoint (surrogate pair)
+//                         String.fromCharCode(high >> 10 | 0xD800, high & 0x3FF | 0xDC00);
+//                 },
 
                 // CSS string/identifier serialization
                 // https://drafts.csswg.org/cssom/#common-serializing-idioms
                 rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
-                fcssescape = function(ch, asCodePoint) {
-                    if (asCodePoint) {
+//                 fcssescape = function(ch, asCodePoint) {
+//                     if (asCodePoint) {
 
-                        // U+0000 NULL becomes U+FFFD REPLACEMENT CHARACTER
-                        if (ch === "\0") {
-                            return "\uFFFD";
-                        }
+//                         // U+0000 NULL becomes U+FFFD REPLACEMENT CHARACTER
+//                         if (ch === "\0") {
+//                             return "\uFFFD";
+//                         }
 
-                        // Control characters and (dependent upon position) numbers get escaped as code points
-                        return ch.slice(0, -1) + "\\" + ch.charCodeAt(ch.length - 1).toString(16) + " ";
-                    }
+//                         // Control characters and (dependent upon position) numbers get escaped as code points
+//                         return ch.slice(0, -1) + "\\" + ch.charCodeAt(ch.length - 1).toString(16) + " ";
+//                     }
 
-                    // Other potentially-special ASCII characters get backslash-escaped
-                    return "\\" + ch;
-                },
+//                     // Other potentially-special ASCII characters get backslash-escaped
+//                     return "\\" + ch;
+//                 },
 
                 // Used for iframes
                 // See setDocument()
                 // Removing the function wrapper causes a "Permission Denied"
                 // error in IE
-                unloadHandler = function() {
-                    setDocument();
-                },
+//                 unloadHandler = function() {
+//                     setDocument();
+//                 },
 
                 disabledAncestor = addCombinator(
                     function(elem) {
@@ -730,24 +730,24 @@
                 // Detect silently failing push.apply
                 arr[preferredDoc.childNodes.length].nodeType;
             } catch (e) {
-                push = {
-                    apply: arr.length ?
+//                 push = {
+//                     apply: arr.length ?
 
-                        // Leverage slice if possible
-                        function(target, els) {
-                            push_native.apply(target, slice.call(els));
-                        } :
+//                         // Leverage slice if possible
+//                         function(target, els) {
+//                             push_native.apply(target, slice.call(els));
+//                         } :
 
-                        // Support: IE<9
-                        // Otherwise append directly
-                        function(target, els) {
-                            var j = target.length,
-                                i = 0;
-                            // Can't trust NodeList.length
-                            while ((target[j++] = els[i++])) {}
-                            target.length = j - 1;
-                        }
-                };
+//                         // Support: IE<9
+//                         // Otherwise append directly
+//                         function(target, els) {
+//                             var j = target.length,
+//                                 i = 0;
+//                             // Can't trust NodeList.length
+//                             while ((target[j++] = els[i++])) {}
+//                             target.length = j - 1;
+//                         }
+//                 };
             }
 
             function Sizzle(selector, context, results, seed) {
@@ -842,24 +842,24 @@
                                 // Exclude object elements
                             } else if (context.nodeName.toLowerCase() !== "object") {
 
-                                // Capture the context ID, setting it first if necessary
-                                if ((nid = context.getAttribute("id"))) {
-                                    nid = nid.replace(rcssescape, fcssescape);
-                                } else {
-                                    context.setAttribute("id", (nid = expando));
-                                }
+//                                 // Capture the context ID, setting it first if necessary
+//                                 if ((nid = context.getAttribute("id"))) {
+//                                     nid = nid.replace(rcssescape, fcssescape);
+//                                 } else {
+//                                     context.setAttribute("id", (nid = expando));
+//                                 }
 
-                                // Prefix every selector in the list
-                                groups = tokenize(selector);
-                                i = groups.length;
-                                while (i--) {
-                                    groups[i] = "#" + nid + " " + toSelector(groups[i]);
-                                }
-                                newSelector = groups.join(",");
+//                                 // Prefix every selector in the list
+//                                 groups = tokenize(selector);
+//                                 i = groups.length;
+//                                 while (i--) {
+//                                     groups[i] = "#" + nid + " " + toSelector(groups[i]);
+//                                 }
+//                                 newSelector = groups.join(",");
 
-                                // Expand context for sibling selectors
-                                newContext = rsibling.test(selector) && testContext(context.parentNode) ||
-                                    context;
+//                                 // Expand context for sibling selectors
+//                                 newContext = rsibling.test(selector) && testContext(context.parentNode) ||
+//                                     context;
                             }
 
                             if (newSelector) {
@@ -937,14 +937,14 @@
              * @param {String} attrs Pipe-separated list of attributes
              * @param {Function} handler The method that will be applied
              */
-            function addHandle(attrs, handler) {
-                var arr = attrs.split("|"),
-                    i = arr.length;
+//             function addHandle(attrs, handler) {
+//                 var arr = attrs.split("|"),
+//                     i = arr.length;
 
-                while (i--) {
-                    Expr.attrHandle[arr[i]] = handler;
-                }
-            }
+//                 while (i--) {
+//                     Expr.attrHandle[arr[i]] = handler;
+//                 }
+//             }
 
             /**
              * Checks document order of two siblings
@@ -952,27 +952,27 @@
              * @param {Element} b
              * @returns {Number} Returns less than 0 if a precedes b, greater than 0 if a follows b
              */
-            function siblingCheck(a, b) {
-                var cur = b && a,
-                    diff = cur && a.nodeType === 1 && b.nodeType === 1 &&
-                    a.sourceIndex - b.sourceIndex;
+//             function siblingCheck(a, b) {
+//                 var cur = b && a,
+//                     diff = cur && a.nodeType === 1 && b.nodeType === 1 &&
+//                     a.sourceIndex - b.sourceIndex;
 
-                // Use IE sourceIndex if available on both nodes
-                if (diff) {
-                    return diff;
-                }
+//                 // Use IE sourceIndex if available on both nodes
+//                 if (diff) {
+//                     return diff;
+//                 }
 
-                // Check if b follows a
-                if (cur) {
-                    while ((cur = cur.nextSibling)) {
-                        if (cur === b) {
-                            return -1;
-                        }
-                    }
-                }
+//                 // Check if b follows a
+//                 if (cur) {
+//                     while ((cur = cur.nextSibling)) {
+//                         if (cur === b) {
+//                             return -1;
+//                         }
+//                     }
+//                 }
 
-                return a ? 1 : -1;
-            }
+//                 return a ? 1 : -1;
+//             }
 
             /**
              * Returns a function to use in pseudos for input types
@@ -1005,50 +1005,50 @@
                 // Known :disabled false positives: fieldset[disabled] > legend:nth-of-type(n+2) :can-disable
                 return function(elem) {
 
-                    // Only certain elements can match :enabled or :disabled
-                    // https://html.spec.whatwg.org/multipage/scripting.html#selector-enabled
-                    // https://html.spec.whatwg.org/multipage/scripting.html#selector-disabled
-                    if ("form" in elem) {
+//                     // Only certain elements can match :enabled or :disabled
+//                     // https://html.spec.whatwg.org/multipage/scripting.html#selector-enabled
+//                     // https://html.spec.whatwg.org/multipage/scripting.html#selector-disabled
+//                     if ("form" in elem) {
 
-                        // Check for inherited disabledness on relevant non-disabled elements:
-                        // * listed form-associated elements in a disabled fieldset
-                        //   https://html.spec.whatwg.org/multipage/forms.html#category-listed
-                        //   https://html.spec.whatwg.org/multipage/forms.html#concept-fe-disabled
-                        // * option elements in a disabled optgroup
-                        //   https://html.spec.whatwg.org/multipage/forms.html#concept-option-disabled
-                        // All such elements have a "form" property.
-                        if (elem.parentNode && elem.disabled === false) {
+//                         // Check for inherited disabledness on relevant non-disabled elements:
+//                         // * listed form-associated elements in a disabled fieldset
+//                         //   https://html.spec.whatwg.org/multipage/forms.html#category-listed
+//                         //   https://html.spec.whatwg.org/multipage/forms.html#concept-fe-disabled
+//                         // * option elements in a disabled optgroup
+//                         //   https://html.spec.whatwg.org/multipage/forms.html#concept-option-disabled
+//                         // All such elements have a "form" property.
+//                         if (elem.parentNode && elem.disabled === false) {
 
-                            // Option elements defer to a parent optgroup if present
-                            if ("label" in elem) {
-                                if ("label" in elem.parentNode) {
-                                    return elem.parentNode.disabled === disabled;
-                                } else {
-                                    return elem.disabled === disabled;
-                                }
-                            }
+//                             // Option elements defer to a parent optgroup if present
+//                             if ("label" in elem) {
+//                                 if ("label" in elem.parentNode) {
+//                                     return elem.parentNode.disabled === disabled;
+//                                 } else {
+//                                     return elem.disabled === disabled;
+//                                 }
+//                             }
 
-                            // Support: IE 6 - 11
-                            // Use the isDisabled shortcut property to check for disabled fieldset ancestors
-                            return elem.isDisabled === disabled ||
+//                             // Support: IE 6 - 11
+//                             // Use the isDisabled shortcut property to check for disabled fieldset ancestors
+//                             return elem.isDisabled === disabled ||
 
-                                // Where there is no isDisabled, check manually
-                                /* jshint -W018 */
-                                elem.isDisabled !== !disabled &&
-                                disabledAncestor(elem) === disabled;
-                        }
+//                                 // Where there is no isDisabled, check manually
+//                                 /* jshint -W018 */
+//                                 elem.isDisabled !== !disabled &&
+//                                 disabledAncestor(elem) === disabled;
+//                         }
 
-                        return elem.disabled === disabled;
+//                         return elem.disabled === disabled;
 
-                        // Try to winnow out elements that can't be disabled before trusting the disabled property.
-                        // Some victims get caught in our net (label, legend, menu, track), but it shouldn't
-                        // even exist on them, let alone have a boolean value.
-                    } else if ("label" in elem) {
-                        return elem.disabled === disabled;
-                    }
+//                         // Try to winnow out elements that can't be disabled before trusting the disabled property.
+//                         // Some victims get caught in our net (label, legend, menu, track), but it shouldn't
+//                         // even exist on them, let alone have a boolean value.
+//                     } else if ("label" in elem) {
+//                         return elem.disabled === disabled;
+//                     }
 
-                    // Remaining elements are neither :enabled nor :disabled
-                    return false;
+//                     // Remaining elements are neither :enabled nor :disabled
+//                     return false;
                 };
             }
 
@@ -1058,19 +1058,19 @@
              */
             function createPositionalPseudo(fn) {
                 return markFunction(function(argument) {
-                    argument = +argument;
-                    return markFunction(function(seed, matches) {
-                        var j,
-                            matchIndexes = fn([], seed.length, argument),
-                            i = matchIndexes.length;
+//                     argument = +argument;
+//                     return markFunction(function(seed, matches) {
+//                         var j,
+//                             matchIndexes = fn([], seed.length, argument),
+//                             i = matchIndexes.length;
 
-                        // Match elements found at the specified indexes
-                        while (i--) {
-                            if (seed[(j = matchIndexes[i])]) {
-                                seed[j] = !(matches[j] = seed[j]);
-                            }
-                        }
-                    });
+//                         // Match elements found at the specified indexes
+//                         while (i--) {
+//                             if (seed[(j = matchIndexes[i])]) {
+//                                 seed[j] = !(matches[j] = seed[j]);
+//                             }
+//                         }
+//                     });
                 });
             }
 
@@ -1079,9 +1079,9 @@
              * @param {Element|Object=} context
              * @returns {Element|Object|Boolean} The input node if acceptable, otherwise a falsy value
              */
-            function testContext(context) {
-                return context && typeof context.getElementsByTagName !== "undefined" && context;
-            }
+//             function testContext(context) {
+//                 return context && typeof context.getElementsByTagName !== "undefined" && context;
+//             }
 
             // Expose support vars for convenience
             support = Sizzle.support = {};
@@ -1411,97 +1411,97 @@
                 sortOrder = hasCompare ?
                     function(a, b) {
 
-                        // Flag for duplicate removal
-                        if (a === b) {
-                            hasDuplicate = true;
-                            return 0;
-                        }
+//                         // Flag for duplicate removal
+//                         if (a === b) {
+//                             hasDuplicate = true;
+//                             return 0;
+//                         }
 
-                        // Sort on method existence if only one input has compareDocumentPosition
-                        var compare = !a.compareDocumentPosition - !b.compareDocumentPosition;
-                        if (compare) {
-                            return compare;
-                        }
+//                         // Sort on method existence if only one input has compareDocumentPosition
+//                         var compare = !a.compareDocumentPosition - !b.compareDocumentPosition;
+//                         if (compare) {
+//                             return compare;
+//                         }
 
-                        // Calculate position if both inputs belong to the same document
-                        compare = (a.ownerDocument || a) === (b.ownerDocument || b) ?
-                            a.compareDocumentPosition(b) :
+//                         // Calculate position if both inputs belong to the same document
+//                         compare = (a.ownerDocument || a) === (b.ownerDocument || b) ?
+//                             a.compareDocumentPosition(b) :
 
-                            // Otherwise we know they are disconnected
-                            1;
+//                             // Otherwise we know they are disconnected
+//                             1;
 
-                        // Disconnected nodes
-                        if (compare & 1 ||
-                            (!support.sortDetached && b.compareDocumentPosition(a) === compare)) {
+//                         // Disconnected nodes
+//                         if (compare & 1 ||
+//                             (!support.sortDetached && b.compareDocumentPosition(a) === compare)) {
 
-                            // Choose the first element that is related to our preferred document
-                            if (a === document || a.ownerDocument === preferredDoc && contains(preferredDoc, a)) {
-                                return -1;
-                            }
-                            if (b === document || b.ownerDocument === preferredDoc && contains(preferredDoc, b)) {
-                                return 1;
-                            }
+//                             // Choose the first element that is related to our preferred document
+//                             if (a === document || a.ownerDocument === preferredDoc && contains(preferredDoc, a)) {
+//                                 return -1;
+//                             }
+//                             if (b === document || b.ownerDocument === preferredDoc && contains(preferredDoc, b)) {
+//                                 return 1;
+//                             }
 
-                            // Maintain original order
-                            return sortInput ?
-                                (indexOf(sortInput, a) - indexOf(sortInput, b)) :
-                                0;
-                        }
+//                             // Maintain original order
+//                             return sortInput ?
+//                                 (indexOf(sortInput, a) - indexOf(sortInput, b)) :
+//                                 0;
+//                         }
 
-                        return compare & 4 ? -1 : 1;
+//                         return compare & 4 ? -1 : 1;
                     } :
                     function(a, b) {
-                        // Exit early if the nodes are identical
-                        if (a === b) {
-                            hasDuplicate = true;
-                            return 0;
-                        }
+//                         // Exit early if the nodes are identical
+//                         if (a === b) {
+//                             hasDuplicate = true;
+//                             return 0;
+//                         }
 
-                        var cur,
-                            i = 0,
-                            aup = a.parentNode,
-                            bup = b.parentNode,
-                            ap = [a],
-                            bp = [b];
+//                         var cur,
+//                             i = 0,
+//                             aup = a.parentNode,
+//                             bup = b.parentNode,
+//                             ap = [a],
+//                             bp = [b];
 
-                        // Parentless nodes are either documents or disconnected
-                        if (!aup || !bup) {
-                            return a === document ? -1 :
-                                b === document ? 1 :
-                                aup ? -1 :
-                                bup ? 1 :
-                                sortInput ?
-                                (indexOf(sortInput, a) - indexOf(sortInput, b)) :
-                                0;
+//                         // Parentless nodes are either documents or disconnected
+//                         if (!aup || !bup) {
+//                             return a === document ? -1 :
+//                                 b === document ? 1 :
+//                                 aup ? -1 :
+//                                 bup ? 1 :
+//                                 sortInput ?
+//                                 (indexOf(sortInput, a) - indexOf(sortInput, b)) :
+//                                 0;
 
-                            // If the nodes are siblings, we can do a quick check
-                        } else if (aup === bup) {
-                            return siblingCheck(a, b);
-                        }
+//                             // If the nodes are siblings, we can do a quick check
+//                         } else if (aup === bup) {
+//                             return siblingCheck(a, b);
+//                         }
 
-                        // Otherwise we need full lists of their ancestors for comparison
-                        cur = a;
-                        while ((cur = cur.parentNode)) {
-                            ap.unshift(cur);
-                        }
-                        cur = b;
-                        while ((cur = cur.parentNode)) {
-                            bp.unshift(cur);
-                        }
+//                         // Otherwise we need full lists of their ancestors for comparison
+//                         cur = a;
+//                         while ((cur = cur.parentNode)) {
+//                             ap.unshift(cur);
+//                         }
+//                         cur = b;
+//                         while ((cur = cur.parentNode)) {
+//                             bp.unshift(cur);
+//                         }
 
-                        // Walk down the tree looking for a discrepancy
-                        while (ap[i] === bp[i]) {
-                            i++;
-                        }
+//                         // Walk down the tree looking for a discrepancy
+//                         while (ap[i] === bp[i]) {
+//                             i++;
+//                         }
 
-                        return i ?
-                            // Do a sibling check if the nodes have a common ancestor
-                            siblingCheck(ap[i], bp[i]) :
+//                         return i ?
+//                             // Do a sibling check if the nodes have a common ancestor
+//                             siblingCheck(ap[i], bp[i]) :
 
-                            // Otherwise nodes in our document sort first
-                            ap[i] === preferredDoc ? -1 :
-                            bp[i] === preferredDoc ? 1 :
-                            0;
+//                             // Otherwise nodes in our document sort first
+//                             ap[i] === preferredDoc ? -1 :
+//                             bp[i] === preferredDoc ? 1 :
+//                             0;
                     };
 
                 return document;
